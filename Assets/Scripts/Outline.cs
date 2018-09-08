@@ -5,12 +5,23 @@ using UnityEngine;
 public class Outline : MonoBehaviour
 {
     public Material AlphaEdgeMat;
+    public ClipInput clipInput;
 
-    void Update ( )
+    private void Update ( )
     {
-        AlphaEdgeMat.SetFloat ( "_EdgeSize", MicInput.MicLoudness );
+        float val = 0.0f;
+        if ( clipInput == null )
+        {
+            val = MicInput.MicLoudness;
+        }
+        else
+        {
+            val = clipInput.ClipLoudness;
+        }
 
-        Color col = new Color (  MicInput.MicLoudness, 1.0f -  MicInput.MicLoudness, ( Mathf.Sin ( Time.timeSinceLevelLoad ) + 1.0f) / 2.0f , 1.0f);
+        AlphaEdgeMat.SetFloat ( "_EdgeSize", val );
+
+        Color col = new Color (  val, 1.0f - val, ( Mathf.Sin ( Time.timeSinceLevelLoad ) + 1.0f) / 2.0f , 1.0f);
         AlphaEdgeMat.SetColor ( "_EdgeColor", col);
     }
 }

@@ -15,8 +15,14 @@ public class MicInput : MonoBehaviour
 
     private string device;
 
+    private AudioClip clipRecord;
+    private AudioClip recordedClip;
+    private int sampleWindow = 128;
+
+    private bool isInitialized;
+
     // Mic initialization.
-    public void InitMic ( )
+    private void InitMic ( )
     {
         clipRecord = AudioClip.Create ( "clipRecord", 128, 1, 44100, true );
         recordedClip = AudioClip.Create ( "recordedClip", 128, 1, 44100, true );
@@ -28,18 +34,14 @@ public class MicInput : MonoBehaviour
         isInitialized = true;
     }
 
-    public void StopMicrophone ( )
+    private void StopMicrophone ( )
     {
         Microphone.End ( device );
         isInitialized = false;
     }
 
-    AudioClip clipRecord; 
-    AudioClip recordedClip; 
-    int sampleWindow = 128;
-
     // Get data from microphone into audioclip.
-    float MicrophoneLevelMax ( )
+    private float MicrophoneLevelMax ( )
     {
         float levelMax = 0;
         float[] waveData = new float[sampleWindow];
@@ -60,14 +62,15 @@ public class MicInput : MonoBehaviour
     }
 
     // Get data from microphone into audioclip.
-    float MicrophoneLevelMaxDecibels ( )
+    private float MicrophoneLevelMaxDecibels ( )
     {
         float db = 20 * Mathf.Log10(Mathf.Abs(MicLoudness));
 
         return db;
     }
 
-    public float FloatLinearOfClip ( AudioClip clip )
+    /*
+    private float FloatLinearOfClip ( AudioClip clip )
     {
         StopMicrophone ( );
 
@@ -90,7 +93,7 @@ public class MicInput : MonoBehaviour
         return levelMax;
     }
 
-    public float DecibelsOfClip ( AudioClip clip )
+    private float DecibelsOfClip ( AudioClip clip )
     {
         StopMicrophone ( );
 
@@ -115,8 +118,9 @@ public class MicInput : MonoBehaviour
 
         return db;
     }
+    */
 
-    void Update ( )
+    private void Update ( )
     {
         // LevelMax equals to the highest normalized value power 2, a small number because < 1.
         // Pass the value to a static var so we can access it from anywhere.
@@ -124,9 +128,8 @@ public class MicInput : MonoBehaviour
         MicLoudnessinDecibels = MicrophoneLevelMaxDecibels ( );
     }
 
-    bool isInitialized;
     // Start mic when scene starts.
-    void OnEnable ( )
+    private void OnEnable ( )
     {
         InitMic ( );
         isInitialized = true;
@@ -134,18 +137,18 @@ public class MicInput : MonoBehaviour
     }
 
     // Stop mic when loading a new level or quit application.
-    void OnDisable ( )
+    private void OnDisable ( )
     {
         StopMicrophone ( );
     }
 
-    void OnDestroy ( )
+    private void OnDestroy ( )
     {
         StopMicrophone ( );
     }
 
     // Make sure the mic gets started & stopped when application gets focused.
-    void OnApplicationFocus ( bool focus )
+    private void OnApplicationFocus ( bool focus )
     {
         if ( focus )
         {

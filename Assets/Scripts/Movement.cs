@@ -4,8 +4,20 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    public ClipInput clipInput;
+
     void Update ( )
     {
-        transform.localPosition = new Vector3 ( transform.localPosition.x, 20.0f * MicInput.MicLoudness, transform.localPosition.z );
+        float val = 0.0f;
+        if ( clipInput == null )
+        {
+            val = MicInput.MicLoudness;
+        }
+        else
+        {
+            val = clipInput.ClipLoudness;
+        }
+
+        transform.localPosition = new Vector3 ( transform.localPosition.x, 20.0f * val, transform.localPosition.z );
     }
 }
