@@ -120,11 +120,14 @@ public class MicInput : MonoBehaviour
     }
     */
 
+    private float velocity = 0.0f;
     private void Update ( )
     {
         // LevelMax equals to the highest normalized value power 2, a small number because < 1.
         // Pass the value to a static var so we can access it from anywhere.
         MicLoudness = MicrophoneLevelMax ( );
+        MicLoudness = Mathf.SmoothDamp ( MicLoudness, MicrophoneLevelMax ( ), ref velocity, 10.0f * Time.deltaTime );
+
         // print ( "MicLoudness " + MicLoudness );
         MicLoudnessinDecibels = MicrophoneLevelMaxDecibels ( );
     }

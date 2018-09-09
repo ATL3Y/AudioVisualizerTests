@@ -51,6 +51,7 @@ public class ClipInput : MonoBehaviour
         return db;
     }
 
+    private float velocity = 0.0f;
     private void Update ( )
     {
         if ( !aud.isPlaying )
@@ -65,7 +66,11 @@ public class ClipInput : MonoBehaviour
         }
         else
         {
-            ClipLoudness = Mathf.MoveTowards(ClipLoudness, ClipLevelMax ( ), 0.0005f);
+            // ClipLoudness = Mathf.MoveTowards(ClipLoudness, ClipLevelMax ( ), 0.01f * Time.deltaTime);
+
+            // ClipLoudness = Mathf.Lerp ( ClipLoudness, ClipLevelMax ( ), Time.deltaTime );
+
+            ClipLoudness = Mathf.SmoothDamp ( ClipLoudness, ClipLevelMax ( ), ref velocity, 10.0f * Time.deltaTime );
             ClipLoudnessinDecibels = ClipLevelMaxDecibels ( );
         }
     }

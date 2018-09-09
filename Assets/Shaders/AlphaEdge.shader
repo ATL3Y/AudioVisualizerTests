@@ -69,7 +69,7 @@
 
 				// just invert the colors
 				// col.rgb -= diff;
-				//col.rgb = 1 - col.rgb;
+				// col.rgb = 1 - col.rgb;
 				return col;
 			}
 			ENDCG
