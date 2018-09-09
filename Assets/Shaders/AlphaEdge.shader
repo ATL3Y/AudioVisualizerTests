@@ -4,7 +4,7 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_EdgeColor("EdgeColor", Color) = (0,0,0,1)
-		_EdgeSize("EdgeSize", Range(0,.01)) = 0.001
+		// _EdgeSize("EdgeSize", Range(0,.01)) = 0.001
 	}
 	SubShader
 	{
@@ -41,21 +41,23 @@
 			
 			sampler2D _MainTex;
 			fixed4 _EdgeColor;
-			half _EdgeSize;
+			// half _EdgeSize;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
-				half spread = _EdgeSize;
-
 				fixed4 col = tex2D(_MainTex, i.uv);
-				
+
+				// Modify the edge size based on the volume of the object's voice. 
+				float edgeSize = col.a;
+
+				half spread = edgeSize;
+				//return spread;
 				float diff = 0;
 
 				float left = tex2D(_MainTex, i.uv - fixed2(spread, 0)).a;
 				float right = tex2D(_MainTex, i.uv + fixed2(spread, 0)).a;
 				float up = tex2D(_MainTex, i.uv - fixed2(0, spread)).a;
 				float down = tex2D(_MainTex, i.uv + fixed2(0, spread)).a;
-				
 				diff += abs(col.a - left);
 				diff += abs(col.a - right);
 				diff += abs(col.a - up);
@@ -66,7 +68,7 @@
 				}
 
 				// just invert the colors
-				col.rgb -= diff;
+				// col.rgb -= diff;
 				//col.rgb = 1 - col.rgb;
 				return col;
 			}

@@ -18,6 +18,6 @@ public class Movement : MonoBehaviour
             val = clipInput.ClipLoudness;
         }
 
-        transform.localPosition = new Vector3 ( transform.localPosition.x, 20.0f * val, transform.localPosition.z );
+        transform.localPosition = new Vector3 ( transform.localPosition.x, 40.0f * val, transform.localPosition.z );
     }
 }

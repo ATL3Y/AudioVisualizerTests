@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent ( typeof ( AudioSource ) )]
 public class ClipInput : MonoBehaviour
 {
     public float ClipLoudness;
@@ -14,8 +14,8 @@ public class ClipInput : MonoBehaviour
     private void InitClip ( )
     {
         aud = GetComponent<AudioSource> ( );
-        aud.playOnAwake = true;
-        aud.loop = true;
+        aud.playOnAwake = false;
+        aud.loop = false;
     }
 
     private void OnEnable ( )
@@ -39,6 +39,7 @@ public class ClipInput : MonoBehaviour
                 levelMax = wavePeak;
             }
         }
+        // Debug.Log ( levelMax );
         return levelMax;
     }
 
@@ -52,7 +53,20 @@ public class ClipInput : MonoBehaviour
 
     private void Update ( )
     {
-        ClipLoudness = ClipLevelMax ( );
-        ClipLoudnessinDecibels = ClipLevelMaxDecibels ( );
+        if ( !aud.isPlaying )
+        {
+            ClipLoudness = 0.0f;
+            ClipLoudnessinDecibels = -30.0f;
+
+            if ( Input.GetKeyDown ( KeyCode.Space ) )
+            {
+                aud.Play ( );
+            }
+        }
+        else
+        {
+            ClipLoudness = Mathf.MoveTowards(ClipLoudness, ClipLevelMax ( ), 0.0005f);
+            ClipLoudnessinDecibels = ClipLevelMaxDecibels ( );
+        }
     }
 }

@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 534669903}
   - component: {fileID: 534669906}
   m_Layer: 0
-  m_Name: Eyes
+  m_Name: Cam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,8 +212,8 @@ Camera:
   m_GameObject: {fileID: 534669902}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 1}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -250,13 +250,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.21260093, y: -0, z: -0, w: 0.9771391}
+  m_LocalPosition: {x: 0, y: 1.7, z: -2.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1613398190}
+  m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 24.550001, y: 0, z: 0}
 --- !u!114 &534669906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 934262687}
   - component: {fileID: 934262686}
   m_Layer: 0
-  m_Name: OtherCharacter
+  m_Name: Other_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -438,7 +438,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AlphaEdgeMat: {fileID: 2100000, guid: 8405980f1f412f84e9a50a01b599fc8f, type: 2}
+  AlphaOutSource: {fileID: 2100000, guid: 750696ffc09d48947a9d5f72b0175e68, type: 2}
   clipInput: {fileID: 807232292}
+  character: 1
+  myColor: {r: 0, g: 0.065570354, b: 1, a: 1}
 --- !u!114 &934262687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,7 +508,7 @@ Transform:
   m_Children:
   - {fileID: 807232290}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 30, y: 180, z: 0}
 --- !u!1 &1613398186
 GameObject:
@@ -520,7 +523,7 @@ GameObject:
   - component: {fileID: 1613398187}
   - component: {fileID: 1613398191}
   m_Layer: 0
-  m_Name: Main Character
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -591,9 +594,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1655907693}
-  - {fileID: 534669905}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1613398191
 MonoBehaviour:
@@ -607,7 +609,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AlphaEdgeMat: {fileID: 2100000, guid: 8405980f1f412f84e9a50a01b599fc8f, type: 2}
+  AlphaOutSource: {fileID: 2100000, guid: 750696ffc09d48947a9d5f72b0175e68, type: 2}
   clipInput: {fileID: 0}
+  character: 0
+  myColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1655907691
 GameObject:
   m_ObjectHideFlags: 0
