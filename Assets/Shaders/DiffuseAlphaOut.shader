@@ -20,7 +20,6 @@
 			#include "UnityLightingCommon.cginc" // for _LightColor0
 
 			sampler2D _MainTex;
-			float4 _MainTex_ST;
 			half _Alpha;
 
 			struct appdata

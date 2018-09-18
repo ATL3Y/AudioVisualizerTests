@@ -5,7 +5,7 @@ using UnityEngine;
 public class Outline : MonoBehaviour
 {
     public Material AlphaEdgeMat;
-    public Material AlphaOutSource;
+    // public Material AlphaOutSource;
     private Material alphaOutInstance;
     public ClipInput clipInput;
 
